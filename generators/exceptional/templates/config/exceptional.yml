@@ -1,0 +1,9 @@
+development:
+  enabled: false
+  logger_class: <%= class_name %> 
+test:
+  enabled: false
+  logger_class: <%= class_name %> 
+production:
+  enabled: true
+  logger_class: <%= class_name %> 

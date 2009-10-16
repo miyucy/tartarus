@@ -1,5 +1,2 @@
 require 'exceptional'
-
-if defined?(ActionController::Base)
-  ActionController::Base.send(:include, Exceptional::Logger)
-end
+ActionController::Base.send(:include, Exceptional::Rescue)

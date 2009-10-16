@@ -1,11 +1,46 @@
 module Exceptional::Logger
   def self.included(base)
-    base.class_eval do
-      alias_method_chain :rescue_action, :exceptional
-    end
+    base.extend ClassMethods
+    base.serialize :request
   end
-  
-  def rescue_action_with_exceptional(exception)
-    rescue_action_without_exceptional(exception)
+
+  module ClassMethods
+    def log(controller, exception)
+      attributes = { 
+        :hash_id => Digest::SHA1.hexdigest("#{exception.class.name}#{exception.message}#{controller.controller_path}#{controller.action_name}"),
+        :exception_class => exception.class.name, 
+        :controller_path => controller.controller_path, 
+        :action_name => controller.action_name, 
+        :message => exception.message, 
+        :backtrace => exception.backtrace * "\n",
+        :request => normalize_request_data(controller.request)
+      }
+
+      create(attributes)
+    end
+
+    def normalize_request_data(request)
+      request_details = {
+        :enviroment => {},
+        :http_details => { 
+          :method => request.method.to_s.upcase,
+          :url => "#{request.protocol}#{request.env["HTTP_HOST"]}#{request.request_uri}",
+          :format => request.format.to_s,
+          :parameters => request.parameters
+        },
+
+        :session => {
+          :variables => request.env['rack.session'],
+          :options => request.env['rack.session.options'],
+          :cookie => request.env['rack.request.cookie_hash']
+        }
+      }
+
+      request.env.each_pair do |key, value|
+        request_details[:enviroment][key.downcase] = value if key.match(/^[A-Z_]*$/)
+      end
+
+      return request_details
+    end
   end
 end

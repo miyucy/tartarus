@@ -1,0 +1,9 @@
+development:
+  enabled: false
+  logger_class: LoggedException 
+test:
+  enabled: false
+  logger_class: LoggedException 
+production:
+  enabled: true
+  logger_class: LoggedException 

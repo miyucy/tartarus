@@ -1,31 +1,26 @@
-$LOAD_PATH.unshift(File.dirname(__FILE__))
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+ENV["RAILS_ENV"] = "test"
 
+require File.expand_path(File.dirname(__FILE__) + "/rails/config/environment")
+require "#{File.expand_path(File.dirname(__FILE__))}/../rails/init"
 require 'spec'
-require 'spec/autorun'
+require 'spec/rails'
 
-require 'rubygems'
-require 'action_controller'
-require 'action_controller/test_process'
-require 'active_record'
-require 'active_record/base'
-require 'active_support'
 
-require 'exceptional'
-
-# Stub out some Rails enviroment variables so we don't have to load an 
-# entire rails enviroment to run the specs.
-module Rails
-  def self.env
-    'test'
-  end
-
-  def self.root
-    '/apps/myapp'
-  end
+def fake_controller_request
+  stub('request',
+       :env => {
+         'HTTP_HOST' => 'test_host',
+         'KEY_ONE' => 'key_one_value',
+         'LOOOOOOOONG_KEY_TWO' => 'key_two_value',
+         'rack.session' => { :id => '123123' },
+         'rack.session.options' => {},
+         'rack.request.cookie_hash' => {}
+       },
+       :method => 'post',
+       :parameters => 'params',
+       :format => 'html',
+       :protocol => 'http://',
+       :request_uri => '/my/uri')
+       
 end
-
-Spec::Runner.configure { |config| }
-
-
 
