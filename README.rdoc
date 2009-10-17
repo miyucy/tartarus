@@ -1,8 +1,12 @@
-= exceptional
+= Exceptional
 
-Description goes here.
+<b>This is currently under development is not currently complete.</b>
 
-== License
+Exceptional provides logging to your database for exceptions triggered by the users of 
+your Rails application. A generator is included that will give you a clean interface 
+to view and manage the exceptions.
+
+=== License
 
 Copyright (c) 2009 Daniel Insley
 
