@@ -1,0 +1,74 @@
+<div>
+  <div id="exception_group_details">
+    <h2><%= @exception.exception_class %> in "<%= "#{@exception.controller_path}##{@exception.action_name}" %>"</h2>
+    <pre><%= @exception.message %></pre>
+  </div>
+
+ <%= will_paginate @exceptions, :page_links => false %>
+
+ <h2>Exception (<%= params[:page] || 1 %> of <%= @exceptions.total_pages %>)</h2>
+  <div id="exception">
+    <div id="request_information" class="togglable">
+      <h3><a class="toggle_link" href="javascript:void(0);">Request</a></h3>
+      <ul class="toggle_data">
+        <% @exception.request[:http_details].each_pair do |key, value| %>
+          <% unless value.blank? %>
+            <li><strong><%= key %></strong> :
+              <% if value.is_a?(Hash) %>
+                <ul>
+                  <% value.each_pair do |key, value| %>
+                    <% unless value.blank? %>
+                      <li><strong><%= key %></strong> : <%= value %></li>
+                    <% end %>
+                    <% end%>
+                </ul>
+              <% else %>
+                <%= value %>
+                <% end %>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+
+    <div id="backtrace_information" class="togglable">
+      <h3><a class="toggle_link" href="javascript:void(0);">Backtrace</a></h3>
+      <pre class="toggle_data"><%= h(@exception.backtrace) %></pre>
+    </div>
+
+    <div id="session_information" class="togglable">
+      <h3><a class="toggle_link" href="javascript:void(0);">Session & Cookies</a></h3>
+      <ul class="toggle_data">
+        <% @exception.request[:session].each_pair do |key, value| %>
+          <% unless value.blank? %>
+            <li><strong><%= key %></strong> :
+              <% if value.is_a?(Hash) %>
+                <ul>
+                  <% value.each_pair do |key, value| %>
+                    <% unless value.blank? %>
+                      <li><strong><%= key %></strong> : <%= value %></li>
+                    <% end %>
+                  <% end %>
+                </ul>
+              <% else %>
+                <%= value %>
+              <% end %>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+
+    <div id="enviroment_information" class="togglable"> 
+      <h3><a class="toggle_link" href="javascript:void(0);">Enviroment</a></h3>
+      <ul class="toggle_data">
+        <% @exception.request[:enviroment].each_pair do |key, value| %>
+          <% unless value.blank? %>
+            <li><strong><%= key%></strong> : <%= value %></li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+

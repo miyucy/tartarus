@@ -1,0 +1,17 @@
+<table>
+  <thead>
+    <tr>
+      <th id="exception_summary">Summary</th>
+      <th id="exception_location">Location</th>
+      <th id="exception_date">Latest</th>
+      <th id="exception_count">Count</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <% @exceptions.each do |exception| %>  
+      <%= render :partial => 'exception', :object => exception %>
+    <% end %>
+  </tbody>
+  
+</table>

@@ -19,3 +19,5 @@ end
 
 require 'exceptional/logger'
 require 'exceptional/rescue'
+
+require 'will_paginate'

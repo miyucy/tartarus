@@ -6,17 +6,16 @@ module Exceptional::Logger
 
   module ClassMethods
     def log(controller, exception)
-      attributes = { 
-        :hash_id => Digest::SHA1.hexdigest("#{exception.class.name}#{exception.message}#{controller.controller_path}#{controller.action_name}"),
-        :exception_class => exception.class.name, 
-        :controller_path => controller.controller_path, 
-        :action_name => controller.action_name, 
-        :message => exception.message, 
-        :backtrace => exception.backtrace * "\n",
-        :request => normalize_request_data(controller.request)
-      }
-
-      create(attributes)
+      create do |logged_exception|
+        hash_id = "#{exception.class.name}#{exception.message}#{controller.controller_path}#{controller.action_name}"     
+        logged_exception.exception_class = exception.class.name
+        logged_exception.controller_path = controller.controller_path
+        logged_exception.action_name = controller.action_name
+        logged_exception.message = exception.message
+        logged_exception.backtrace = exception.backtrace * "\n"
+        logged_exception.request = normalize_request_data(controller.request)
+        logged_exception.hash_id = Digest::SHA1.hexdigest(hash_id)
+      end
     end
 
     def normalize_request_data(request)

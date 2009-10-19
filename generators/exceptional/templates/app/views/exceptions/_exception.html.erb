@@ -1,0 +1,14 @@
+<tr id="exception_<%= exception.hash_id %>">
+  <td>
+    <strong><%= link_to "#{exception.exception_class}", :action => 'details', :id => exception.hash_id %></strong>
+    <br />
+    <span><%= truncate(exception.message, :length => 115) %></span>
+  </td>
+
+  <td>
+    <%= "#{exception.controller_path}##{exception.action_name}" %>
+  </td>
+
+  <td><%= exception.created_at.strftime("%m/%d/%Y %I:%M%p") %></td>
+  <td style="text-align: center;"><%= exception.count %></td>
+</tr>

@@ -10,6 +10,7 @@ begin
     gem.email = "dinsley@gmail.com"
     gem.homepage = "http://github.com/dinsley/exceptional"
     gem.authors = ["Daniel Insley"]
+    gem.add_dependency "will_paginate"
     gem.add_development_dependency "rails"
     gem.add_development_dependency "rspec"
     gem.add_development_dependency "rspec-rails"
