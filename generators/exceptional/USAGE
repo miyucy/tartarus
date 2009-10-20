@@ -1,0 +1,14 @@
+Description:
+    Generates a model, controller and views for viewing and managing exceptions.  
+
+Usage:
+    If you do not pass any arguments, the model class will default to "LoggedException".
+
+Examples:
+    script/generate exceptional
+
+        Creates default logged exception model, controller, and views.
+
+    script/generate exceptional MyException
+
+        Creates a custom model, controller, and views.

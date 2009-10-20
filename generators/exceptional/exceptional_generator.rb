@@ -1,16 +1,28 @@
 class ExceptionalGenerator < Rails::Generator::NamedBase
+  default_options :skip_migration => false
+
+  def initialize(runtime_args, runtime_options = {})
+    runtime_args << 'LoggedException' if runtime_args.empty?
+    super
+  end
+  
   def manifest
-    record do |m|
-      # Configuration and Migration
+    record do |m|      
+      puts "\nGenerated files:\n"
+      # Directories
+      m.directory "app/views/exceptions"
+      m.directory 'spec/models'
+
+      # Configuration
       m.template 'config/exceptional.yml', 'config/exceptional.yml'
-      m.migration_template "db/migrate/add_#{table_name}.rb", "db/migrate", :migration_file_name => "add_#{singular_name}_table"
+
+      #Migration        
+      m.migration_template "db/migrate/add_logged_exceptions.rb", "db/migrate", :migration_file_name => "add_#{singular_name}_table"
 
       # Controllers
       m.template 'app/controllers/exceptions_controller.rb', "app/controllers/exceptions_controller.rb"
 
       # Views
-      m.directory "app/views/exceptions"
- 
       Dir.glob( File.dirname(__FILE__) + '/templates/app/views/exceptions/*.html.erb').each do |path| 
         view = File.basename( path )
         m.file "app/views/exceptions/#{view}", "app/views/exceptions/#{view}"
@@ -20,12 +32,18 @@ class ExceptionalGenerator < Rails::Generator::NamedBase
       m.template 'app/models/logged_exception.rb', "app/models/#{file_name}.rb"
 
       # Specs
-      m.directory 'spec/models'      
       m.template 'spec/models/logged_exception_spec.rb', "spec/models/#{file_name}_spec.rb"
 
       # Public
       m.file 'public/javascripts/exceptional.jquery.js', 'public/javascripts/exceptional.jquery.js'
       m.file 'public/stylesheets/exceptional.css', 'public/stylesheets/exceptional.css'
     end
-  end 
+  end
+
+  def after_generate
+    puts "\nIn order for exceptional to function properly, you'll need to complete the following steps to complete the installation process: \n\n"
+    puts "  1) Run 'rake db:migrate' to generate the logging table for your model.\n"
+    puts "  2) Add '/javascripts/exceptional.jquery.js', and 'stylesheets/exceptional.css' to your applications layout.\n"
+    puts "  3) View 'config/exceptional.yml' and make sure the default options are correct.\n\n"
+  end
 end
