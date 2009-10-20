@@ -1,17 +1,28 @@
-<table>
-  <thead>
-    <tr>
-      <th id="exception_summary">Summary</th>
-      <th id="exception_location">Location</th>
-      <th id="exception_date">Latest</th>
-      <th id="exception_count">Count</th>
-    </tr>
-  </thead>
+<div id="exceptional">
+  <div id="exceptional_cap">
+    <div id="exceptional_nav">
+      <a href="#">Remove all</a>
+    </div>
+    <h2>Exception Overview</h2>
+    <div><%= @exceptions.length %> Exceptions</div>
+  </div>
   
-  <tbody>
-    <% @exceptions.each do |exception| %>  
-      <%= render :partial => 'exception', :object => exception %>
-    <% end %>
-  </tbody>
-  
-</table>
+  <table id="exceptional_overview">
+    <thead>
+      <tr>
+        <th id="exception_summary">Summary</th>
+        <th id="exception_location">Location</th>
+        <th id="exception_date">Latest</th>
+        <th id="exception_count">Count</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <% @exceptions.each do |exception| %>  
+        <%= render :partial => 'exception', :object => exception %>
+      <% end %>
+    </tbody>
+    
+  </table>
+</div>
+

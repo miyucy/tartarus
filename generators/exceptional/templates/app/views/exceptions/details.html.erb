@@ -1,12 +1,17 @@
-<div>
+<div id="exceptional">
   <div id="exception_group_details">
-    <h2><%= @exception.exception_class %> in "<%= "#{@exception.controller_path}##{@exception.action_name}" %>"</h2>
-    <pre><%= @exception.message %></pre>
+    <div  id="exceptional_cap">
+      <div id="exceptional_nav">
+        <%= link_to 'Return to overview', :controller => 'exceptions', :action => 'index' %>
+        <%= will_paginate @exceptions, :page_links => false, :class => 'exceptional_pagination' %>
+      </div>
+      <h2><%= @exception.exception_class %> in "<%= "#{@exception.controller_path}##{@exception.action_name}" %>"</h2>
+      <div>Viewing Exception <%= params[:page] || 1 %> of <%= @exceptions.total_pages %></div>
+    </div>
   </div>
 
- <%= will_paginate @exceptions, :page_links => false %>
+  <pre><%= @exception.message %></pre>
 
- <h2>Exception (<%= params[:page] || 1 %> of <%= @exceptions.total_pages %>)</h2>
   <div id="exception">
     <div id="request_information" class="togglable">
       <h3><a class="toggle_link" href="javascript:void(0);">Request</a></h3>
