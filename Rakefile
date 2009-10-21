@@ -6,7 +6,7 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "tartarus"
     gem.summary = %Q{Exception Logging for Rails}
-    gem.description = %Q{}
+    gem.description = %Q{Provides exception logging and a generator for creating a clean interface to manage exceptions.}
     gem.email = "dinsley@gmail.com"
     gem.homepage = "http://github.com/dinsley/tartarus"
     gem.authors = ["Daniel Insley"]

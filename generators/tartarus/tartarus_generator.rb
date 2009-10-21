@@ -46,6 +46,5 @@ class TartarusGenerator < Rails::Generator::NamedBase
     puts "\nIn order for exceptional to function properly, you'll need to complete the following steps to complete the installation process: \n\n"
     puts "  1) Run 'rake db:migrate' to generate the logging table for your model.\n"
     puts "  2) Add '/javascripts/tartarus.jquery.js', and 'stylesheets/tartarus.css' to your applications layout.\n"
-    puts "  3) View 'config/exceptions.yml' and make sure the default options are correct.\n\n"
   end
 end

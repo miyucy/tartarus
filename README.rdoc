@@ -16,8 +16,8 @@ dependencies are used:
 
 === Installation
 
-1. Install the gem:
-     [sudo] gem install tartarus
+1. Install the gem from:
+     [sudo] gem install tartarus --source=http://gemcutter.org
 2. Add the exceptional gem dependency to your enviroment.rb:
      config.gem "tartarus"
 3. Run the generator from the root of your Rails application:
@@ -27,7 +27,6 @@ dependencies are used:
 5. Add the javascript and stylesheet includes in your layout:
      <script type="text/javascript" src="/javascripts/tartarus.jquery.js"></script>
      <link href="/stylesheets/tartarus.css" media="all" rel="stylesheet" type="text/css" />
-6. View the generated 'config/exceptions.yml' file and make sure the default options are correct.
 
 === License
 
