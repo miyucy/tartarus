@@ -1,7 +1,7 @@
 <div id="tartarus">
   <div id="tartarus_cap">
     <div id="tartarus_nav">
-      <a href="#">Remove all</a>
+      <%= link_to 'Remove all', :action => :remove_all %>
     </div>
     <h2>Exception Overview</h2>
     <div><%= @exceptions.length %> Exceptions</div>
