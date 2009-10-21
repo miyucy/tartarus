@@ -7,14 +7,15 @@ module Tartarus::Logger
   module ClassMethods
     def log(controller, exception)
       create do |logged_exception|
-        hash_id = "#{exception.class.name}#{exception.message}#{controller.controller_path}#{controller.action_name}"     
+        group_id = "#{exception.class.name}#{exception.message}#{controller.controller_path}#{controller.action_name}" 
+    
         logged_exception.exception_class = exception.class.name
         logged_exception.controller_path = controller.controller_path
         logged_exception.action_name = controller.action_name
         logged_exception.message = exception.message
         logged_exception.backtrace = exception.backtrace * "\n"
         logged_exception.request = normalize_request_data(controller.request)
-        logged_exception.hash_id = Digest::SHA1.hexdigest(hash_id)
+        logged_exception.group_id = Digest::SHA1.hexdigest(group_id)
       end
     end
 

@@ -1,23 +1,26 @@
-#exceptional { margin: 0px 20px }
+#tartarus { margin: 0px 20px }
 
-#exceptional_cap { padding-bottom: 10px; border-bottom: 1px solid #777; margin: 20px 0px; }
-#exceptional h2 { margin: 10px 0px; } 
+#tartarus_cap { padding-bottom: 10px; border-bottom: 1px solid #777; margin: 20px 0px; }
+#tartarus h2 { margin: 10px 0px; } 
 
-#exceptional_nav { float: right }
-.exceptional_pagination { margin-top: 20px; }
+#tartarus_nav { float: right }
+.tartarus_pagination { margin-top: 20px; }
 
-#exceptional table { border-collapse: collapse; width: 100%; }
-#exceptional table tr { border-bottom: 1px solid #E0DFE0; }
-#exceptional table th, #exceptional table td { padding: 5px; }
-#exceptional table th { text-align: left; }
+#tartarus table { border-collapse: collapse; width: 100%; }
+#tartarus table tr { border-bottom: 1px solid #E0DFE0; }
+#tartarus table th, #tartarus table td { padding: 5px; }
+#tartarus table th { text-align: left; }
 
-#exceptional th#exception_location { width: 150px; }
-#exceptional th#exception_date { width: 150px; }
-#exceptional th#exception_count { text-align: center; }
+#tartarus th#exception_location { width: 150px; }
+#tartarus th#exception_date { width: 150px; }
+#tartarus th#exception_count { text-align: center; }
 
-#exceptional pre { -webkit-border-radius: 5px; -moz-border-radius: 5px; font-size: 10px; color: #fff; background-color: #222; padding: 10px; font-family: Consolas, Monaco, 'Courier New', Courier,monospace; }
-#exceptional a, #exceptional a:visited { text-decoration: underline; #bdf; } 
-#exceptional a:hover { #09f }
+#tartarus pre { -webkit-border-radius: 5px; -moz-border-radius: 5px; font-size: 10px; color: #fff; background-color: #222; padding: 10px; font-family: Consolas, Monaco, 'Courier New', Courier,monospace; }
+#tartarus a, #tartarus a:visited { text-decoration: underline; #bdf; } 
+#tartarus a:hover { #09f }
+
+#tartarus #exception { clear: both; }
+#tartarus #exception_actions { float: right; }
 
 .toggle_data { display: none }
 #backtrace_information .toggle_data { display: block; }

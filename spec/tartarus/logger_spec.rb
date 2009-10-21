@@ -13,9 +13,9 @@ describe Tartarus::Logger do
       @exception.stub!(:backtrace).and_return(['one', 'two', 'three'])
     end
 
-    it "should create a hash_id for grouping of exceptions that are the same" do
+    it "should create a group_id for grouping of exceptions that are the same" do
       @logged_exception = LoggedException.log(@controller, @exception)
-      @logged_exception.hash_id.should == 'ea61658eacfe0930ae2b318297ab51a3c0b5668c'
+      @logged_exception.group_id.should == 'ea61658eacfe0930ae2b318297ab51a3c0b5668c'
     end
 
     it "should convert the backtrace from an array to a string seperated by newlines" do

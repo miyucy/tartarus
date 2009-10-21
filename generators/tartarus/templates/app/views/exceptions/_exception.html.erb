@@ -1,6 +1,6 @@
-<tr id="exception_<%= exception.hash_id %>">
+<tr id="exception_<%= exception.group_id %>">
   <td>
-    <strong><%= link_to "#{exception.exception_class}", :action => 'details', :id => exception.hash_id %></strong>
+    <strong><%= link_to "#{exception.exception_class}", :action => 'details', :id => exception.group_id %></strong>
     <br />
     <span><%= truncate(exception.message, :length => 115) %></span>
   </td>

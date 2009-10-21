@@ -11,7 +11,8 @@ class TartarusGenerator < Rails::Generator::NamedBase
       puts "\nGenerated files:\n"
       # Directories
       m.directory "app/views/exceptions"
-      m.directory 'spec/models'
+      m.directory "spec/models"
+      m.directory "spec/controllers"
 
       # Configuration
       m.template 'config/exceptions.yml', 'config/exceptions.yml'
@@ -33,6 +34,7 @@ class TartarusGenerator < Rails::Generator::NamedBase
 
       # Specs
       m.template 'spec/models/logged_exception_spec.rb', "spec/models/#{file_name}_spec.rb"
+      m.template 'spec/controllers/exceptions_controller_spec.rb', 'spec/controllers/exceptions_controller_spec.rb'
 
       # Public
       m.file 'public/javascripts/tartarus.jquery.js', 'public/javascripts/tartarus.jquery.js'

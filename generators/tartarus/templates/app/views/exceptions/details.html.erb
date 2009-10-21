@@ -1,16 +1,23 @@
-<div id="exceptional">
+<div id="tartarus">
   <div id="exception_group_details">
-    <div  id="exceptional_cap">
-      <div id="exceptional_nav">
+    <div  id="tartarus_cap">
+      <div id="tartarus_nav">
         <%= link_to 'Return to overview', :controller => 'exceptions', :action => 'index' %>
-        <%= will_paginate @exceptions, :page_links => false, :class => 'exceptional_pagination' %>
+        <%= will_paginate @exceptions, :page_links => false, :class => 'tartarus_pagination' %>
       </div>
       <h2><%= @exception.exception_class %> in "<%= "#{@exception.controller_path}##{@exception.action_name}" %>"</h2>
       <div>Viewing Exception <%= params[:page] || 1 %> of <%= @exceptions.total_pages %></div>
     </div>
   </div>
 
+  <h3><%= @exception.created_at.strftime("%B %e %Y at %I:%M:%S%p") %></h3>
   <pre><%= @exception.message %></pre>
+
+  <div id="exception_actions">
+    <%= link_to 'Remove all', :action => 'remove_group', :id => @exception.group_id %>
+    &middot;
+    <%= link_to 'Remove', :action => 'remove_individual', :id => @exception.id %>
+  </div>
 
   <div id="exception">
     <div id="request_information" class="togglable">
