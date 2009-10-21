@@ -1,9 +1,10 @@
 require 'yaml'
+require 'will_paginate'
 
-class Exceptional
+class Tartarus
   class << self
     def configuration
-      @cached_config ||= YAML.load_file("#{Rails.root}/config/exceptional.yml")[Rails.env]
+      @cached_config ||= YAML.load_file("#{Rails.root}/config/exceptions.yml")[Rails.env]
     end
 
     def logger_class
@@ -17,7 +18,5 @@ class Exceptional
 
 end
 
-require 'exceptional/logger'
-require 'exceptional/rescue'
-
-require 'will_paginate'
+require 'tartarus/logger'
+require 'tartarus/rescue'

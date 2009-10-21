@@ -20,7 +20,9 @@ def fake_controller_request
        :parameters => 'params',
        :format => 'html',
        :protocol => 'http://',
-       :request_uri => '/my/uri')
-       
+       :request_uri => '/my/uri')     
 end
 
+class LoggedException < ActiveRecord::Base
+  include Tartarus::Logger
+end

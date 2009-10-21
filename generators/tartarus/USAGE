@@ -5,10 +5,10 @@ Usage:
     If you do not pass any arguments, the model class will default to "LoggedException".
 
 Examples:
-    script/generate exceptional
+    script/generate tartarus
 
         Creates default logged exception model, controller, and views.
 
-    script/generate exceptional MyException
+    script/generate tartarus MyException
 
         Creates a custom model, controller, and views.

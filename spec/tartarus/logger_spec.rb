@@ -1,10 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-class LoggedException < ActiveRecord::Base
-  include Exceptional::Logger
-end
-
-describe Exceptional::Logger do
+describe Tartarus::Logger do
   it 'should serialize the request attribute' do
     LoggedException.serialized_attributes.include?('request').should be_true
   end

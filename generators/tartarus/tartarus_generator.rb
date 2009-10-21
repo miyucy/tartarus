@@ -1,4 +1,4 @@
-class ExceptionalGenerator < Rails::Generator::NamedBase
+class TartarusGenerator < Rails::Generator::NamedBase
   default_options :skip_migration => false
 
   def initialize(runtime_args, runtime_options = {})
@@ -14,7 +14,7 @@ class ExceptionalGenerator < Rails::Generator::NamedBase
       m.directory 'spec/models'
 
       # Configuration
-      m.template 'config/exceptional.yml', 'config/exceptional.yml'
+      m.template 'config/exceptions.yml', 'config/exceptions.yml'
 
       #Migration        
       m.migration_template "db/migrate/add_logged_exceptions.rb", "db/migrate", :migration_file_name => "add_#{singular_name}_table"
@@ -35,15 +35,15 @@ class ExceptionalGenerator < Rails::Generator::NamedBase
       m.template 'spec/models/logged_exception_spec.rb', "spec/models/#{file_name}_spec.rb"
 
       # Public
-      m.file 'public/javascripts/exceptional.jquery.js', 'public/javascripts/exceptional.jquery.js'
-      m.file 'public/stylesheets/exceptional.css', 'public/stylesheets/exceptional.css'
+      m.file 'public/javascripts/tartarus.jquery.js', 'public/javascripts/tartarus.jquery.js'
+      m.file 'public/stylesheets/tartarus.css', 'public/stylesheets/tartarus.css'
     end
   end
 
   def after_generate
     puts "\nIn order for exceptional to function properly, you'll need to complete the following steps to complete the installation process: \n\n"
     puts "  1) Run 'rake db:migrate' to generate the logging table for your model.\n"
-    puts "  2) Add '/javascripts/exceptional.jquery.js', and 'stylesheets/exceptional.css' to your applications layout.\n"
-    puts "  3) View 'config/exceptional.yml' and make sure the default options are correct.\n\n"
+    puts "  2) Add '/javascripts/tartarus.jquery.js', and 'stylesheets/tartarus.css' to your applications layout.\n"
+    puts "  3) View 'config/exceptions.yml' and make sure the default options are correct.\n\n"
   end
 end

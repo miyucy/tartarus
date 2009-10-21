@@ -1,6 +1,8 @@
-= Exceptional
+= Tartarus
 
-Exceptional provides logging to your database for exceptions triggered by the users of 
+It is a deep, gloomy place, a pit, or an abyss used as a dungeon of torment and suffering..
+
+Tartarus provides logging to your database for exceptions triggered by the users of 
 your Rails application. A generator is included that will give you a clean interface 
 to view and manage the exceptions.
 
@@ -15,17 +17,17 @@ dependencies are used:
 === Installation
 
 1. Install the gem:
-     [sudo] gem install exceptional
+     [sudo] gem install tartarus
 2. Add the exceptional gem dependency to your enviroment.rb:
-     config.gem "exceptional"
+     config.gem "tartarus"
 3. Run the generator from the root of your Rails application:
-     script/generate exceptional
+     script/generate tartarus
 4. Run the migration that was generated:
      rake db:migrate
 5. Add the javascript and stylesheet includes in your layout:
-     <script type="text/javascript" src="/javascripts/exceptional.jquery.js"></script>
-     <link href="/stylesheets/exceptional.css" media="all" rel="stylesheet" type="text/css" />
-6. View the generated 'config/exceptional.yml' file and make sure the default options are correct.
+     <script type="text/javascript" src="/javascripts/tartarus.jquery.js"></script>
+     <link href="/stylesheets/tartarus.css" media="all" rel="stylesheet" type="text/css" />
+6. View the generated 'config/exceptions.yml' file and make sure the default options are correct.
 
 === License
 

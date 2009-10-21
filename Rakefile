@@ -4,11 +4,11 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "exceptional"
+    gem.name = "tartarus"
     gem.summary = %Q{Exception Logging for Rails}
     gem.description = %Q{}
     gem.email = "dinsley@gmail.com"
-    gem.homepage = "http://github.com/dinsley/exceptional"
+    gem.homepage = "http://github.com/dinsley/tartarus"
     gem.authors = ["Daniel Insley"]
     gem.add_dependency "will_paginate"
     gem.add_development_dependency "rails"
@@ -28,7 +28,7 @@ Spec::Rake::SpecTask.new(:spec) do |spec|
   spec.spec_files = FileList['spec/**/*_spec.rb']
   spec.rcov = true
   spec.rcov_opts = lambda do
-    IO.readlines("spec/rcov.opts").map {|l| l.chomp.split " "}.flatten
+    IO.readlines("spec/rcov.opts").map { |l| l.chomp.split " " }.flatten
   end
 end
 
@@ -44,7 +44,7 @@ Rake::RDocTask.new do |rdoc|
   end
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "exceptional #{version}"
+  rdoc.title = "tartarus #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end

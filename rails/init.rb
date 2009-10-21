@@ -1,2 +1,3 @@
-require 'exceptional'
-ActionController::Base.send(:include, Exceptional::Rescue)
+require 'tartarus'
+
+ActionController::Base.send(:include, Tartarus::Rescue)

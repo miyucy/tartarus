@@ -1,4 +1,4 @@
-module Exceptional::Logger
+module Tartarus::Logger
   def self.included(base)
     base.extend ClassMethods
     base.serialize :request

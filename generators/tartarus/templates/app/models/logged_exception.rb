@@ -1,4 +1,3 @@
 class <%= class_name %> < ActiveRecord::Base
-  include Exceptional::Logger
-
+  include Tartarus::Logger
 end
