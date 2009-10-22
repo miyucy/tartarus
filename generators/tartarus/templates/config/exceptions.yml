@@ -1,9 +1,9 @@
 development:
-  enabled: false
+  logging_enabled: true
   logger_class: <%= class_name %> 
 test:
-  enabled: false
+  logging_enabled: false
   logger_class: <%= class_name %> 
 production:
-  enabled: true
+  logging_enabled: true
   logger_class: <%= class_name %> 

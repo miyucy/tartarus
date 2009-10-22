@@ -22,5 +22,5 @@
 #tartarus #exception { clear: both; }
 #tartarus #exception_actions { float: right; }
 
-.toggle_data { display: none }
-#backtrace_information .toggle_data { display: block; }
+#tartarus .toggle_data { display: none }
+#tartarus #backtrace_information .toggle_data { display: block; }

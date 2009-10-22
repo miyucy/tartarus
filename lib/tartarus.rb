@@ -10,12 +10,15 @@ class Tartarus
     def logger_class
       configuration['logger_class'].constantize
     end
+    
+    def logging_enabled?
+      configuration['logging_enabled'] == true
+    end
 
     def log(controller, exception)
       logger_class.log(controller, exception)
     end
   end
-
 end
 
 require 'tartarus/logger'

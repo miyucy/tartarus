@@ -20,6 +20,7 @@ describe Tartarus::Rescue do
       @exception = StandardError.new
       @controller.stub!(:rescue_action_without_tartarus)
       @controller.stub!(:response_code_for_rescue).and_return(:internal_server_error)
+      Tartarus.stub!(:logging_enabled?).and_return(true)
       Tartarus.stub!(:log)
     end
 
@@ -31,6 +32,18 @@ describe Tartarus::Rescue do
 
     it 'should not log the exception with tartarus if the exception code is not an internal server error' do
       @controller.should_receive(:response_code_for_rescue).and_return(:not_found)
+      @controller.rescue_action_with_tartarus(@exception)
+    end
+
+    it 'should log the exception with tartarus if exception logging is enabled' do
+      Tartarus.should_receive(:logging_enabled?).and_return(true)
+      @controller.rescue_action_with_tartarus(@exception)
+    end
+
+    it 'should not log the exception with tartarus if exception logging is disabled' do
+      Tartarus.should_receive(:logging_enabled?).and_return(false)
+      Tartarus.should_receive(:log).never
+
       @controller.rescue_action_with_tartarus(@exception)
     end
 

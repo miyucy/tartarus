@@ -6,7 +6,9 @@ module Tartarus::Rescue
   end
   
   def rescue_action_with_tartarus(exception)
-    if response_code_for_rescue(exception) == :internal_server_error
+    is_exception = response_code_for_rescue(exception) == :internal_server_error
+
+    if is_exception and Tartarus.logging_enabled?
       Tartarus.log(self, exception)
     end
 
