@@ -20,23 +20,20 @@ module Tartarus::Logger
     end
 
     def normalize_request_data(request)
+      enviroment = request.env.dup
+
       request_details = {
-        :enviroment => {},
+        :enviroment => { :process => $$, :server => `hostname -s`.chomp },
+        :session => { :variables => enviroment['rack.session'].to_hash, :cookie => enviroment['rack.request.cookie_hash'] },
         :http_details => { 
           :method => request.method.to_s.upcase,
           :url => "#{request.protocol}#{request.env["HTTP_HOST"]}#{request.request_uri}",
           :format => request.format.to_s,
           :parameters => request.parameters
-        },
-
-        :session => {
-          :variables => request.env['rack.session'],
-          :options => request.env['rack.session.options'],
-          :cookie => request.env['rack.request.cookie_hash']
         }
       }
 
-      request.env.each_pair do |key, value|
+      enviroment.each_pair do |key, value|
         request_details[:enviroment][key.downcase] = value if key.match(/^[A-Z_]*$/)
       end
 

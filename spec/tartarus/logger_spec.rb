@@ -42,12 +42,13 @@ describe Tartarus::Logger do
     
     it 'should have a enviroment hash that contains a hash of only the uppercase keys of the original controller request hash' do
       @request_data[:enviroment].should_not be_blank
-      @request_data[:enviroment].should == { "http_host" => "test_host", "loooooooong_key_two" => "key_two_value", "key_one" => "key_one_value"}
+      @request_data[:enviroment].should == { "http_host" => "test_host", "loooooooong_key_two" => "key_two_value", "key_one" => "key_one_value", :server => `hostname -s`.chomp, :process => $$ }
     end
 
     it 'should have a session hash' do
       @request_data[:session].should_not be_blank
-      @request_data[:session].should == { :cookie => {}, :options => {}, :variables => { :id=>"123123" } }
+      @request_data[:session].should be_an_instance_of(Hash)
+      @request_data[:session].should == { :cookie => {}, :variables => { :id=>"123123" } }
     end
 
     it 'should have a http details hash' do
