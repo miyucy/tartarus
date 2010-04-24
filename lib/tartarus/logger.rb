@@ -13,7 +13,7 @@ module Tartarus::Logger
         logged_exception.controller_path = controller.controller_path
         logged_exception.action_name = controller.action_name
         logged_exception.message = exception.message
-        logged_exception.backtrace = exception.backtrace * "\n"
+        logged_exception.backtrace = sanitize_backtrace(exception.backtrace) * "\n"
         logged_exception.request = normalize_request_data(controller.request)
         logged_exception.group_id = Digest::SHA1.hexdigest(group_id)
       end
@@ -38,6 +38,37 @@ module Tartarus::Logger
       end
 
       return request_details
+    end
+
+    private
+
+    def sanitize_backtrace(backtrace)
+      unless @cleaner
+        @cleaner = ActiveSupport::BacktraceCleaner.new
+
+        dirs = confdir + gemdir + homedir + railsdir
+        dirs.sort_by{ |k, v| -v.size }.each do |name, path|
+          @cleaner.add_filter{ |trace| trace.gsub(/^#{Regexp.escape(path)}/, "[#{name.upcase}]") }
+        end
+      end
+      @cleaner.clean backtrace
+    end
+
+    def confdir
+      require 'rbconfig'
+      Config::CONFIG.select{ |k,v| k =~ /dir$/ }
+    end
+
+    def gemdir
+      Gem.path.map{ |v| ["gemdir", v]}
+    end
+
+    def homedir
+      [["home", File.expand_path("~")]]
+    end
+
+    def railsdir
+      [["rails", Rails.root.to_s]]
     end
   end
 end
